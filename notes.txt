@@ -1,0 +1,65 @@
+Prepares DB and adds action to show all events
+- Creates entity Event
+- Migrates entity to DB
+- Creates event controller
+- Adds action index, that shows all the events from the DB
+- Installs twig
+- Adds twig template to show all the events
+- Installs debug
+
+Event’s name
+name
+string
+255
+no
+
+Event’s date and time (start date and time and end date and time should be tracked)
+date_time
+datetime
+no
+
+Event’s description
+description
+text
+yes
+
+Event’s image (link to the image)
+image
+string
+255
+no
+
+Event’s capacity (number of persons)
+capacity
+integer
+yes
+
+Event’s contact  e-mail
+email
+string
+255
+yes
+
+Event’s contact phone number
+phone_number
+string
+255
+yes
+
+Event’s address (physical location, including street name and number, postal code and city name)
+address
+string
+255
+no
+
+Event’s URL
+url
+string
+255
+yes
+
+Event’s Type (predefined list like “music”, “sport”, “movie”, “theater” etc.)  (note: related to the bonus points, not necessary for the basic grading)
+type
+string
+255
+yes
