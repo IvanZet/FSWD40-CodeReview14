@@ -22,4 +22,17 @@ class EventController extends Controller {
 
 		return $this->render('events/show_events.html.twig', ['events' => $events]);
 	}
+
+	/**
+	 * @Route("details/{id}", name="details")
+	 */
+	public function showDetails ($id) {
+		$details = $this->getDoctrine()->getRepository(Event::class)->find($id);
+		
+		if (!$details) {
+			throw $this->createNotFoundException('Event not found for ID: ' . $id);
+		}
+
+		return $this->render('events/show_details.html.twig', ['details' => $details]);
+	}
 }

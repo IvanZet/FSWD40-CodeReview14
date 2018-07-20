@@ -1,5 +1,22 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-	<p>All events come here</p><br>
-	{{ dump(events) }}
+	{# dump(events) #}
+	<table>
+		<caption>Upcoming events</caption>
+		<thead>
+			<!-- <tr>
+				<th>Banner</th>
+				<th></th>
+			</tr> -->
+		</thead>
+		<tbody>
+			{% for anEvent in events %}
+				<tr>
+					<td>{{ anEvent.name }}</td>
+					<td>{{ anEvent.dateTime.date|date("j F H:i") }}</td>
+					<td><a href="details/{{ anEvent.id }}"><button type="button">Details</button></a></td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 {% endblock %}

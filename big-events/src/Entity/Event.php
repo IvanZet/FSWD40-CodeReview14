@@ -24,7 +24,7 @@ class Event
     /**
      * @ORM\Column(type="datetime")
      */
-    private $date_time;
+    private $dateTime;
 
     /**
      * @ORM\Column(type="text", nullable=true)
@@ -49,7 +49,7 @@ class Event
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $phone_number;
+    private $phoneNumber;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -85,12 +85,12 @@ class Event
 
     public function getDateTime(): ?\DateTimeInterface
     {
-        return $this->date_time;
+        return $this->dateTime;
     }
 
-    public function setDateTime(\DateTimeInterface $date_time): self
+    public function setDateTime(\DateTimeInterface $dateTime): self
     {
-        $this->date_time = $date_time;
+        $this->dateTime = $dateTime;
 
         return $this;
     }
@@ -145,12 +145,12 @@ class Event
 
     public function getPhoneNumber(): ?string
     {
-        return $this->phone_number;
+        return $this->phoneNumber;
     }
 
-    public function setPhoneNumber(?string $phone_number): self
+    public function setPhoneNumber(?string $phoneNumber): self
     {
-        $this->phone_number = $phone_number;
+        $this->phoneNumber = $phoneNumber;
 
         return $this;
     }

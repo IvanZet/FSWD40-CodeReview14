@@ -1,11 +1,15 @@
-Prepares DB and adds action to show all events
-- Creates entity Event
-- Migrates entity to DB
-- Creates event controller
-- Adds action index, that shows all the events from the DB
-- Installs twig
-- Adds twig template to show all the events
-- Installs debug
+Do later:
+* Add Assets package to code links to local files correctly
+
+Creates event details page
+- Updated action to show all the events
+- Installs assets
+- Adds action to show event's details
+- Adds twig template for event details
+- Changes date_time property of class Evetn to dateTime
+- Changes phone_mumber property of class Event to phoneNumber
+- Edits link to CSS file in base.html.twig using asser()
+- Adits CSS file to ipmrove details page
 
 Event’s name
 name

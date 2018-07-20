@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	{# dump(details) #}
+	<a href="/events"><button type="button">Back to all Events</button></a>
+	<h1>{{ details.name }}</h1>
+	<img src="{{ asset(details.image) }}" alt="Picture"><!--asset('public/' ~ details.image)-->
+	<p class="description">{{ details.description }}</p>
+	<p><strong>Date and time:</strong> {{ details.dateTime.date|date("j F H:i") }}</p>
+	<p><strong>Capacity:</strong> {{ details.capacity }} people</p>
+
+	{% if details.email != null %}
+		<p><strong>Email:</strong> {{ details.email }}</p>
+	{% endif %}
+
+	{% if details.phoneNumber != null %}
+		<p><strong>Phone number:</strong> {{ details.phoneNumber }}</p>
+	{% endif %}
+	
+	<p><strong>Address:</strong> {{ details.address }}</p>
+
+	{% if details.url != null %}
+		<p><strong>Url:</strong> {{ details.url }}</p>
+	{% endif %}
+
+	<p><strong>Event type:</strong> {{ details.type }}</p>
+{% endblock %}
