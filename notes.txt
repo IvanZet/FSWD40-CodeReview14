@@ -1,5 +1,6 @@
 To Do:
 * Allow not all fields to be filled
+* Allow adding img with its url
 * Add time input in the form to create new event
 * Add Assets package to code links to local files correctly
 

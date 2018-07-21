@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block body %}
+	<a href="{{ path('events') }}"><button type="button">Back to all Events</button></a><br>
 	{{ form_start(form) }}
 	{{ form_widget(form) }}
 	{{ form_end(form) }}
