@@ -16,6 +16,7 @@
 					<td>{{ anEvent.name }}</td>
 					<td>{{ anEvent.dateTime.date|date("j F H:i") }}</td>
 					<td><a href="{{ path('details', {'id': anEvent.id}) }}"><button type="button">Details</button></a></td>
+					<td><a href="{{ path('edit', {'id': anEvent.id}) }}"><button type="button">Edit</button></a></td>
 				</tr>
 			{% endfor %}
 		</tbody>

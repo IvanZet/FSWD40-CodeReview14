@@ -4,10 +4,6 @@ To Do:
 * Add time input in the form to create new event
 * Add Assets package to code links to local files correctly
 
-- Updates links to pages using Twig's path() tag
-- Installs form package
-- Adds new action addEvent with form builder and saving to DB
-- Adds new page add_event.html.twig with form
 
 Event’s name
 name
