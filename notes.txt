@@ -1,15 +1,13 @@
-Do later:
+To Do:
+* Allow not all fields to be filled
+* Add time input in the form to create new event
 * Add Assets package to code links to local files correctly
 
-Creates event details page
-- Updated action to show all the events
-- Installs assets
-- Adds action to show event's details
-- Adds twig template for event details
-- Changes date_time property of class Evetn to dateTime
-- Changes phone_mumber property of class Event to phoneNumber
-- Edits link to CSS file in base.html.twig using asser()
-- Adits CSS file to ipmrove details page
+- Updates links to pages using Twig's path() tag
+- Installs form package
+- Adds new action addEvent with form builder and saving to DB
+- Adds new page add_event.html.twig with form
+- 
 
 Event’s name
 name

@@ -2,7 +2,7 @@
 
 {% block body %}
 	{# dump(details) #}
-	<a href="/events"><button type="button">Back to all Events</button></a>
+	<a href="{{ path('events') }}"><button type="button">Back to all Events</button></a>
 	<h1>{{ details.name }}</h1>
 	<img src="{{ asset(details.image) }}" alt="Picture"><!--asset('public/' ~ details.image)-->
 	<p class="description">{{ details.description }}</p>
