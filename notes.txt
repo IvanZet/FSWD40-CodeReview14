@@ -7,7 +7,6 @@ To Do:
 - Installs form package
 - Adds new action addEvent with form builder and saving to DB
 - Adds new page add_event.html.twig with form
-- 
 
 Event’s name
 name
