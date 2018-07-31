@@ -1,4 +1,9 @@
 To Do:
+* Format front-end of adding new event
+* Add Deleting
+* Add Bootstrap
+* Check other fetures from assignmemt
+* Change imgs links to URL
 * Allow not all fields to be filled
 * Allow adding img with its url
 * Add time input in the form to create new event
