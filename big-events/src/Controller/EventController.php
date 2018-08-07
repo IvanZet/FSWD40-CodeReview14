@@ -119,6 +119,9 @@ class EventController extends Controller {
 		    $entityManager->persist($event);
 		    $entityManager->flush();
 
+		    //Show info message
+				$this->addFlash('notice', 'Event added');
+
 		    return $this->redirectToRoute('events');
       }
 
@@ -195,5 +198,29 @@ class EventController extends Controller {
 	    return $this->redirectToRoute('events');
     }
 		return $this->render('events/edit_event.html.twig', array('form' => $form->createView(), 'event' => $event)); 
+	}
+
+	/**
+	 * @Route("/delete/{id}", name="delete")
+	 */
+	public function deleteAction(Request $request, $id) {
+		// Find the vent to delte
+		$entityManager = $this->getDoctrine()->getManager();
+		$event = $entityManager->getRepository(Event::class)->find($id);
+
+		// Check event to exist
+		if (!$event) {
+			throw $this->createNotFoundException('Event not found with ID: ' . $id);
+		} else {
+			// Delete the event
+			$entityManager->remove($event);
+			$entityManager->flush();
+
+			//Show info message
+			$this->addFlash('notice', 'Event deleted');
+		}
+
+		// Redirect to list of all evetns
+		return $this->redirectToRoute('events');
 	}
 }

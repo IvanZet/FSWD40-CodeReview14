@@ -1,10 +1,10 @@
 To Do:
 1 Format front-end of adding new event
-* Add Bootstrap for editing
-* Add Deleting
+1 Add Bootstrap for editing
+1 Add Deleting
 * Add Bootstrap everywhere
-* Check other features from assignmemt
 * Change imgs links to URL
+* Check other features from assignmemt
 * Allow not all fields to be filled
 * Add time input in the form to create new event
 * Add Assets package to code links to local files correctly
