@@ -1,7 +1,16 @@
 {% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block stylesheets %}
+	<!-- Bootstrap CSS -->
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
+{% endblock %}
+
 {% block body %}
-	<a href="{{ path('events') }}"><button type="button">Back to all Events</button></a><br>
-	{{ form_start(form) }}
-	{{ form_widget(form) }}
-	{{ form_end(form) }}
+	<div class="container">
+		<a href="{{ path('events') }}"><button type="button" class="btn btn-primary mt-2">Back to all Events</button></a><br>
+		{{ form_start(form) }}
+		{{ form_widget(form) }}
+		{{ form_end(form) }}
+	</div>
 {% endblock %}
