@@ -3,26 +3,38 @@
 
 {% block body %}
 	{# dump(details) #}
-	<a href="{{ path('events') }}"><button type="button">Back to all Events</button></a>
-	<h1>{{ details.name }}</h1>
-	<img src="{{ asset(details.image) }}" alt="Picture"><!--asset('public/' ~ details.image)-->
-	<p class="description">{{ details.description }}</p>
-	<p><strong>Date and time:</strong> {{ details.dateTime.date|date("j F H:i") }}</p>
-	<p><strong>Capacity:</strong> {{ details.capacity }} people</p>
+	<div class="container">
+		<a href="{{ path('events') }}"><button class="btn btn-outline-primary my-3" type="button">Back to all Events</button></a>
+		
+		<div class="card">
+			<div class="card-header">
+				<strong>Date and time:</strong> {{ details.dateTime.date|date("j F H:i") }} <strong>Address:</strong> {{ details.address }}
+			</div>
 
-	{% if details.email != null %}
-		<p><strong>Email:</strong> {{ details.email }}</p>
-	{% endif %}
+		  <img class="card-img-top mx-auto mt-4" src="{{ asset(details.image) }}" alt="Event image">
 
-	{% if details.phoneNumber != null %}
-		<p><strong>Phone number:</strong> {{ details.phoneNumber }}</p>
-	{% endif %}
-	
-	<p><strong>Address:</strong> {{ details.address }}</p>
+		  <div class="card-body">
+		    <h3 class="card-title text-center">{{ details.name }}</h3>
+		    <p class="card-text text-justify">{{ details.description }}</p>
 
-	{% if details.url != null %}
-		<p><strong>Url:</strong> {{ details.url }}</p>
-	{% endif %}
+				<div class="card-footer text-muted text-center">
+					{% if details.url != null %}
+						<strong>Url:</strong>&nbsp;<a href="{{ details.url }}">{{ details.url }}</a>
+					{% endif %}
 
-	<p><strong>Event type:</strong> {{ details.type }}</p>
+					{% if details.email != null %}
+						<strong>Email:</strong>&nbsp;{{ details.email }}
+					{% endif %}
+
+					{% if details.phoneNumber != null %}
+						<strong>Phone&nbsp;number:</strong>&nbsp;{{ details.phoneNumber }}
+					{% endif %}
+
+					<strong>Capacity:</strong>&nbsp;{{ details.capacity }}&nbsp;people
+
+					<strong>Event&nbsp;type:</strong>&nbsp;{{ details.type }}
+				</div>
+		  </div>
+		</div>
+	</div>
 {% endblock %}
