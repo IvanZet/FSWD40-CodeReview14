@@ -5,14 +5,14 @@
 {% block body %}
 	{# dump(events) #}
 	<div class="container">
+		<a href="{{ path('add') }}"><button class="btn btn-outline-success my-3" type="button">Add event</button></a>
 		<div class="table-responsive">
-			<a href="{{ path('add') }}"><button class="btn btn-outline-success my-3" type="button">Add event</button></a>
 			<table class="table table-striped">
 				<caption>Upcoming events</caption>
 				<thead>
 					<tr>
 						<th>Name</th>
-						<th>Date</th>
+						<th>Date and time</th>
 						<th class="text-center" colspan="3">Actions</th>
 					</tr>
 				</thead>
