@@ -75,41 +75,29 @@ class EventController extends Controller {
 
 		$event = new Event();
 
-		//Writing input fields here manually
-		/*$event->setName('Lorem ipsum');
-		$event->setImage('http://via.placeholder.com/350x150');
-		$event->setDescription('Curabitur in blandit ante. Aliquam eu urna eleifend nunc rhoncus dapibus ac at erat. Pellentesque sed ligula ligula. Praesent velit enim, efficitur non mi non, accumsan pellentesque metus. Sed maximus tempor porta. Mauris accumsan massa nec aliquam lacinia. Aliquam ac augue sit amet elit bibendum varius a sed ex. Suspendisse et facilisis urna. Praesent finibus nunc viverra tellus porttitor ultricies in at mi. Duis accumsan volutpat ipsum, ultrices laoreet risus.');
-		$event->setDateTime(new \DateTime('tomorrow'));
-		$event->setCapacity(100);
-		$event->setAddress('12 Meiereistraße, 1020 Wien');
-		$event->setUrl('https://www.lipsum.com');
-		$event->setPhoneNumber('+43 600 5554444');
-		$event->setEmail('event@mail.com');
-		$event->setType('theatre');*/
-
 		// Create form
 		/*$form->handleRequest($request);*/
 		$form = $this->createEventForm($event, 'Create event');
 		
-			$this->doRequest($form, $request);
+		$this->doRequest($form, $request);
 
-			/*if ($form->isSubmitted()) { //!!! && $form->isValid()
-				// $form->getData() holds the submitted values
-        // but, the original `$event` variable has also been updated
-        $event = $form->getData();*/
+		/*if ($form->isSubmitted()) { //!!! && $form->isValid()
+			// $form->getData() holds the submitted values
+      // but, the original `$event` variable has also been updated
+      $event = $form->getData();*/
 
-      if ($form->isSubmitted() && $form->isValid()) { //!!! && $form->isValid()
-      	$event = $form->getData();
-		    // Save the event to the database
-		    $entityManager = $this->getDoctrine()->getManager();
-		    $entityManager->persist($event);
-		    $entityManager->flush();
+    if ($form->isSubmitted() && $form->isValid()) { //!!! && $form->isValid()
+    	$event = $form->getData();
+	    // Save the event to the database
+	    $entityManager = $this->getDoctrine()->getManager();
+	    $entityManager->persist($event);
+	    $entityManager->flush();
 
-		    //Show info message
-				$this->addFlash('notice', 'Event added');
+	    //Show info message
+			$this->addFlash('notice', 'Event added');
 
-		    return $this->redirectToRoute('events');
-      }
+	    return $this->redirectToRoute('events');
+    }
 
 		return $this->render('events/add_event.html.twig', array('form' => $form->createView()));
 	}
@@ -143,12 +131,11 @@ class EventController extends Controller {
 		$form = $this->createEventForm($event, 'Edit event');
 
 		//Request filled form
-		$this->doRequest($form, $request);
+		$form->handleRequest($request);
 		//var_dump($form);
 		//die;
 
 		//Get data from form
-		//!!! no validation
 		if ($form->isSubmitted() && $form->isValid()) { //!!! && $form->isValid()
     	//Read new values from form
 			$name = $form['name']->getData();

@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+{% endblock %}
+
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block stylesheets %}
+	<!-- Bootstrap CSS -->
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<a href="{{ path('events') }}"><button type="button" class="btn btn-outline-primary my-3">Back to all Events</button></a><br>
+		
+		{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+			{{ form_errors(form) }}
+
+			<div class="form-group">
+				{{ form_label(form.name, 'Name*') }}	
+				{{ form_errors(form.name) }}
+				{{ form_widget(form.name) }}
+				{{ form_help(form.name) }}
+			</div>
+
+			<div class="form-group">
+				{{ form_label(form.image, 'Image URL*') }}	
+				{{ form_errors(form.image) }}
+				{{ form_widget(form.image) }}
+				{{ form_help(form.image) }}
+			</div>
+			
+			<div class="form-group">
+				{{ form_label(form.datetime, 'Date and time*') }}	
+				{{ form_errors(form.datetime) }}
+				{{ form_widget(form.datetime) }}
+				{{ form_help(form.datetime) }}
+			</div>
+
+			{{ form_row(form.description) }}
+			{{ form_row(form.capacity) }}
+			{{ form_row(form.address) }}
+			{{ form_row(form.url) }}
+			{{ form_row(form.phoneNumber) }}
+			{{ form_row(form.email) }}
+			{{ form_row(form.type) }}
+
+			{% block button %}{% endblock %}
+
+		{{ form_end(form) }}
+
+	</div>
+{% endblock %}

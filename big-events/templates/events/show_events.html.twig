@@ -20,7 +20,7 @@
 					{% for anEvent in events %}
 						<tr>
 							<td>{{ anEvent.name }}</td>
-							<td>{{ anEvent.dateTime.date|date("j F H:i") }}</td>
+							<td>{{ anEvent.dateTime.date|date("j F Y H:i") }}</td>
 							<td><a href="{{ path('details', {'id': anEvent.id}) }}"><button class="btn btn-outline-primary btn-sm" type="button">Details</button></a></td>
 							<td><a href="{{ path('edit', {'id': anEvent.id}) }}"><button class="btn btn-outline-warning btn-sm" type="button">Edit</button></a></td>
 							<td><a href="{{ path('delete', {'id': anEvent.id}) }}"><button class="btn btn-outline-danger btn-sm" type="button">Delete</button></a></td>

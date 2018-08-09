@@ -20,20 +20,17 @@ class Event
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
-     * @Assert\Type("\TextType")
      */
     private $name;
 
     /**
      * @ORM\Column(type="datetime")
      * @Assert\NotBlank()
-     * @Assert\Type("\DateTime")
      */
     private $dateTime;
 
     /**
      * @ORM\Column(type="text", nullable=true)
-     * @Assert\Type("\TextType")
      */
     private $description;
 
@@ -45,37 +42,31 @@ class Event
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Assert\Type("\IntegerType")
      */
     private $capacity;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Type("\EmailType")
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Type("\TextType")
      */
     private $phoneNumber;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Type("\TextType")
      */
     private $address;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Type("\UrlType")
      */
     private $url;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Type("\TextType")
      */
     private $type;
 
