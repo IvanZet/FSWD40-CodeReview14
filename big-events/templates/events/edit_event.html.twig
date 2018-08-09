@@ -11,7 +11,7 @@
 {% block body %}
 	<div class="container">
 		<a href="{{ path('events') }}"><button type="button" class="btn btn-outline-primary my-3">Back to all Events</button></a><br>
-		{{ form_start(form) }}
+		{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
 		{{ form_widget(form) }}
 		{{ form_end(form) }}
 	</div>

@@ -3,7 +3,7 @@ namespace App\Controller;
 
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Event;
@@ -52,7 +52,7 @@ class EventController extends Controller {
 			->add('name', TextType::class)
 			->add('image', TextType::class)
 			->add('description', TextType::class)
-			->add('datetime', DateType::class)
+			->add('datetime', DateTimeType::class)
 			->add('capacity', IntegerType::class)
 			->add('address', TextType::class)
 			->add('url', TextType::class)
@@ -87,23 +87,9 @@ class EventController extends Controller {
 		$event->setEmail('event@mail.com');
 		$event->setType('theatre');*/
 
-		/*$form = $this->createFormBuilder($event)
-			->add('name', TextType::class)
-			->add('image', TextType::class)
-			->add('description', TextType::class)
-			->add('datetime', DateType::class)
-			->add('capacity', IntegerType::class)
-			->add('address', TextType::class)
-			->add('url', TextType::class)
-			->add('phoneNumber', TextType::class)
-			->add('email', TextType::class)
-			->add('type', TextType::class)
-			->add('save', SubmitType::class, array('label' => 'Create event'))
-			->getForm();*/
-
-			/*$form->handleRequest($request);*/
-
-			$form = $this->createEventForm($event, 'Create event');
+		// Create form
+		/*$form->handleRequest($request);*/
+		$form = $this->createEventForm($event, 'Create event');
 		
 			$this->doRequest($form, $request);
 
@@ -112,7 +98,7 @@ class EventController extends Controller {
         // but, the original `$event` variable has also been updated
         $event = $form->getData();*/
 
-      if ($form->isSubmitted()) { //!!! && $form->isValid()
+      if ($form->isSubmitted() && $form->isValid()) { //!!! && $form->isValid()
       	$event = $form->getData();
 		    // Save the event to the database
 		    $entityManager = $this->getDoctrine()->getManager();
@@ -141,7 +127,7 @@ class EventController extends Controller {
 		}
 
 		//Read current values
-		$event->setName($event->getName());
+		/*$event->setName($event->getName());
 		$event->setImage($event->getImage());
 		$event->setDescription($event->getDescription());
 		$event->setDateTime($event->getDateTime());
@@ -150,7 +136,7 @@ class EventController extends Controller {
 		$event->setUrl($event->getUrl());
 		$event->setPhoneNumber($event->getPhoneNumber());
 		$event->setEmail($event->getEmail());
-		$event->setType($event->getType());
+		$event->setType($event->getType());*/
 
 		//Try to aupdate the event
 		//Create form
@@ -163,7 +149,7 @@ class EventController extends Controller {
 
 		//Get data from form
 		//!!! no validation
-		if ($form->isSubmitted()) { //!!! && $form->isValid()
+		if ($form->isSubmitted() && $form->isValid()) { //!!! && $form->isValid()
     	//Read new values from form
 			$name = $form['name']->getData();
 			$image = $form['image']->getData();
