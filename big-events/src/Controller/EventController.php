@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 
+use App\Form\EventType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
@@ -28,44 +29,17 @@ class EventController extends Controller {
 		return $this->render('events/show_events.html.twig', ['events' => $events]);
 	}
 
-	//Returns details of an event user in actions showDetails and edit
-	public function getDetails($id) {
-		return $this->getDoctrine()->getRepository(Event::class)->find($id);
-	}
-
 	/**
 	 * @Route("/details/{id}", name="details")
 	 */
 	public function showDetailsAction($id) {
-		$details = $this->getDetails($id);
+		$details = $this->getDoctrine()->getRepository(Event::class)->find($id);
 		
 		if (!$details) {
 			throw $this->createNotFoundException('Event not found for ID: ' . $id);
 		}
 
 		return $this->render('events/show_details.html.twig', ['details' => $details]);
-	}
-
-	//Creates form for event
-	public function createEventForm(&$event, $label) {
-		return $this->createFormBuilder($event)
-			->add('name', TextType::class)
-			->add('image', TextType::class)
-			->add('description', TextType::class)
-			->add('datetime', DateTimeType::class)
-			->add('capacity', IntegerType::class)
-			->add('address', TextType::class)
-			->add('url', TextType::class)
-			->add('phoneNumber', TextType::class)
-			->add('email', TextType::class)
-			->add('type', TextType::class)
-			->add('save', SubmitType::class, array('label' => "$label"))
-			->getForm();
-	}
-
-	//Handles request
-	public function doRequest(&$form, &$request) {
-		return $form->handleRequest($request);
 	}
 
 	/**
@@ -75,11 +49,10 @@ class EventController extends Controller {
 
 		$event = new Event();
 
-		// Create form
-		/*$form->handleRequest($request);*/
-		$form = $this->createEventForm($event, 'Create event');
+		// Create form from a custom form class
+		$form = $this->createForm(EventType::class, $event);
 		
-		$this->doRequest($form, $request);
+		$form->handleRequest($request);
 
 		/*if ($form->isSubmitted()) { //!!! && $form->isValid()
 			// $form->getData() holds the submitted values
@@ -127,13 +100,11 @@ class EventController extends Controller {
 		$event->setType($event->getType());*/
 
 		//Try to aupdate the event
-		//Create form
-		$form = $this->createEventForm($event, 'Edit event');
+		//Create form from a custom form class
+		$form = $this->createForm(EventType::class, $event);
 
 		//Request filled form
 		$form->handleRequest($request);
-		//var_dump($form);
-		//die;
 
 		//Get data from form
 		if ($form->isSubmitted() && $form->isValid()) { //!!! && $form->isValid()
