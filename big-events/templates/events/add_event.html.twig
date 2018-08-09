@@ -1,19 +1,7 @@
-{% extends 'base.html.twig' %}
+{% extends 'events/form.html.twig' %}
+
 {% block title %}Add event{% endblock %}
 
-{% form_theme form 'bootstrap_4_layout.html.twig' %}
-
-{% block stylesheets %}
-	<!-- Bootstrap CSS -->
-  <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
+{% block button %}
+	{{ form_widget(form.save, {'attr': {'class': 'btn btn-outline-success mb-3'}}) }}
 {% endblock %}
-
-{% block body %}
-	<div class="container">
-		<a href="{{ path('events') }}"><button type="button" class="btn btn-outline-primary my-3">Back to all Events</button></a><br>
-		{{ form_start(form) }}
-		{{ form_widget(form) }}
-		{{ form_end(form) }}
-	</div>
-{% endblock %}
-

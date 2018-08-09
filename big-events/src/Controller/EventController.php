@@ -3,7 +3,7 @@ namespace App\Controller;
 
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Event;
@@ -52,7 +52,7 @@ class EventController extends Controller {
 			->add('name', TextType::class)
 			->add('image', TextType::class)
 			->add('description', TextType::class)
-			->add('datetime', DateType::class)
+			->add('datetime', DateTimeType::class)
 			->add('capacity', IntegerType::class)
 			->add('address', TextType::class)
 			->add('url', TextType::class)
@@ -75,55 +75,29 @@ class EventController extends Controller {
 
 		$event = new Event();
 
-		//Writing input fields here manually
-		/*$event->setName('Lorem ipsum');
-		$event->setImage('http://via.placeholder.com/350x150');
-		$event->setDescription('Curabitur in blandit ante. Aliquam eu urna eleifend nunc rhoncus dapibus ac at erat. Pellentesque sed ligula ligula. Praesent velit enim, efficitur non mi non, accumsan pellentesque metus. Sed maximus tempor porta. Mauris accumsan massa nec aliquam lacinia. Aliquam ac augue sit amet elit bibendum varius a sed ex. Suspendisse et facilisis urna. Praesent finibus nunc viverra tellus porttitor ultricies in at mi. Duis accumsan volutpat ipsum, ultrices laoreet risus.');
-		$event->setDateTime(new \DateTime('tomorrow'));
-		$event->setCapacity(100);
-		$event->setAddress('12 Meiereistraße, 1020 Wien');
-		$event->setUrl('https://www.lipsum.com');
-		$event->setPhoneNumber('+43 600 5554444');
-		$event->setEmail('event@mail.com');
-		$event->setType('theatre');*/
-
-		/*$form = $this->createFormBuilder($event)
-			->add('name', TextType::class)
-			->add('image', TextType::class)
-			->add('description', TextType::class)
-			->add('datetime', DateType::class)
-			->add('capacity', IntegerType::class)
-			->add('address', TextType::class)
-			->add('url', TextType::class)
-			->add('phoneNumber', TextType::class)
-			->add('email', TextType::class)
-			->add('type', TextType::class)
-			->add('save', SubmitType::class, array('label' => 'Create event'))
-			->getForm();*/
-
-			/*$form->handleRequest($request);*/
-
-			$form = $this->createEventForm($event, 'Create event');
+		// Create form
+		/*$form->handleRequest($request);*/
+		$form = $this->createEventForm($event, 'Create event');
 		
-			$this->doRequest($form, $request);
+		$this->doRequest($form, $request);
 
-			/*if ($form->isSubmitted()) { //!!! && $form->isValid()
-				// $form->getData() holds the submitted values
-        // but, the original `$event` variable has also been updated
-        $event = $form->getData();*/
+		/*if ($form->isSubmitted()) { //!!! && $form->isValid()
+			// $form->getData() holds the submitted values
+      // but, the original `$event` variable has also been updated
+      $event = $form->getData();*/
 
-      if ($form->isSubmitted()) { //!!! && $form->isValid()
-      	$event = $form->getData();
-		    // Save the event to the database
-		    $entityManager = $this->getDoctrine()->getManager();
-		    $entityManager->persist($event);
-		    $entityManager->flush();
+    if ($form->isSubmitted() && $form->isValid()) { //!!! && $form->isValid()
+    	$event = $form->getData();
+	    // Save the event to the database
+	    $entityManager = $this->getDoctrine()->getManager();
+	    $entityManager->persist($event);
+	    $entityManager->flush();
 
-		    //Show info message
-				$this->addFlash('notice', 'Event added');
+	    //Show info message
+			$this->addFlash('notice', 'Event added');
 
-		    return $this->redirectToRoute('events');
-      }
+	    return $this->redirectToRoute('events');
+    }
 
 		return $this->render('events/add_event.html.twig', array('form' => $form->createView()));
 	}
@@ -141,7 +115,7 @@ class EventController extends Controller {
 		}
 
 		//Read current values
-		$event->setName($event->getName());
+		/*$event->setName($event->getName());
 		$event->setImage($event->getImage());
 		$event->setDescription($event->getDescription());
 		$event->setDateTime($event->getDateTime());
@@ -150,20 +124,19 @@ class EventController extends Controller {
 		$event->setUrl($event->getUrl());
 		$event->setPhoneNumber($event->getPhoneNumber());
 		$event->setEmail($event->getEmail());
-		$event->setType($event->getType());
+		$event->setType($event->getType());*/
 
 		//Try to aupdate the event
 		//Create form
 		$form = $this->createEventForm($event, 'Edit event');
 
 		//Request filled form
-		$this->doRequest($form, $request);
+		$form->handleRequest($request);
 		//var_dump($form);
 		//die;
 
 		//Get data from form
-		//!!! no validation
-		if ($form->isSubmitted()) { //!!! && $form->isValid()
+		if ($form->isSubmitted() && $form->isValid()) { //!!! && $form->isValid()
     	//Read new values from form
 			$name = $form['name']->getData();
 			$image = $form['image']->getData();
